@@ -1,7 +1,7 @@
-15	8	390.0	190.0	3850	8.5	amc ambassador dpl
+15	8	390.0	190.0	3850	8.5	    amc ambassador dpl
 15	8	383.0	170.0	3563	10.0	dodge challenger se
-15	8	340.0	160.0	3609	8.0	plymouth 'cuda 340
-15	8	400.0	150.0	3761	9.5	chevrolet monte carlo
+15	8	340.0	160.0	3609	8.0	    plymouth 'cuda 340
+15	8	400.0	150.0	3761	9.5	    chevrolet monte carlo
 15	8	455.0	225.0	3086	10.0	buick estate wagon (sw)
 25	4	113.0	95.00	2372	15.0	toyota corona mark ii
 20	6	198.0	95.00	2833	15.5	plymouth duster

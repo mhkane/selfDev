@@ -11,7 +11,7 @@
 #
 
 class Classifier:
-    def __init__(self, bucketPrefix, testBucketNumber, dataFormat):
+    def __init__(self, bucketPrefix, testBucketNumber, dataFormat,k):
 
         """ a classifier will be built from files with the bucketPrefix
         excluding the file with textBucketNumber. dataFormat is a string that
@@ -22,6 +22,7 @@ class Classifier:
         """
    
         self.medianAndDeviation = []
+        self.k = k
         
         # reading the data in from the file
  
@@ -95,6 +96,19 @@ class Classifier:
        self.medianAndDeviation.append((median, asd))
        for v in self.data:
            v[1][columnNumber] = (v[1][columnNumber] - median) / asd
+    def knn(self, itemVector):
+        distDic = {}
+        for item in self.data:
+            if item not in distDic:
+                distDic[item]=[self.manhattan(itemVector,item[1])]
+        distList = distDic.values()
+        n = self.k
+        while n!=0:
+            n-=1
+            o = min(distList)
+
+            distList.remove(min)
+
 
 
     def normalizeVector(self, v):

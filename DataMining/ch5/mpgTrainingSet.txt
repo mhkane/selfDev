@@ -5,8 +5,8 @@ class	num	num	num	num	num	comment
 15	8	304.0	150.0	3433	12.0	amc rebel sst
 15	8	302.0	140.0	3449	10.5	ford torino
 15	8	429.0	198.0	4341	10.0	ford galaxie 500
-15	8	454.0	220.0	4354	9.0	chevrolet impala
-15	8	440.0	215.0	4312	8.5	plymouth fury iii
+15	8	454.0	220.0	4354	9.0	    chevrolet impala
+15	8	440.0	215.0	4312	8.5	    plymouth fury iii
 15	8	455.0	225.0	4425	10.0	pontiac catalina
 20	4	140.0	90.00	2408	19.5	chevrolet vega
 20	4	122.0	86.00	2226	16.5	ford pinto runabout

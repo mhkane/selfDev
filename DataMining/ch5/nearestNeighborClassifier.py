@@ -1,5 +1,5 @@
 #
-#  Nearest Neighbor Classifier 
+#  Nearest Neighbor Classifier
 #
 #
 #  Code file for the book Programmer's Guide to Data Mining
@@ -17,24 +17,24 @@
 ##
 ##        comment   -  this field should be interpreted as a comment
 ##        class     -  this field describes the class of the field
-##        num       -  this field describes an integer attribute that should 
+##        num       -  this field describes an integer attribute that should
 ##                     be included in the computation.
 ##
 ##        more to be described as needed
-## 
+##
 ##
 ##    So, for example, if our file describes athletes and is of the form:
 ##    Shavonte Zellous   basketball  70  155
 ##    The first line might be:
 ##    comment   class  num   num
 ##
-##    Meaning the first column (name of the player) should be considered a comment; 
-##    the next column represents the class of the entry (the sport); 
+##    Meaning the first column (name of the player) should be considered a comment;
+##    the next column represents the class of the entry (the sport);
 ##    and the next 2 represent attributes to use in the calculations.
 ##
 ##    The classifer reads this file into the list called data.
 ##    The format of each entry in that list is a tuple
-##  
+##
 ##    (class, normalized attribute-list, comment-list)
 ##
 ##    so, for example
@@ -45,49 +45,13 @@
 ##    ('gymnastics', [-2.27, -1.2], ['Ksenia Semenova']),
 ##    ('track', [0.09, -0.06], ['Blake Russell'])]
 ##
-   
-            
+
+
 
 class Classifier:
 
-    def __init__(self, isList,filenames):
-        self.medianAndDeviation = []
-        self.data = []
-        self.buckets = []
-        for filename in filenames:
-            # reading the data in from the file
-            f = open(filename)
-            lines = f.readlines()
-            f.close()
-            bucket=[]
-            self.format = lines[0].strip().split('\t')
-            for line in lines[1:]:
-                fields = line.strip().split('\t')
-                ignore = []
-                vector = []
-                for i in range(len(fields)):
-                    if self.format[i] == 'num':
-                        vector.append(float(fields[i]))
-                    elif self.format[i] == 'comment':
-                        ignore.append(fields[i])
-                    elif self.format[i] == 'class':
-                        classification = fields[i]
-                self.data.append((classification, vector, ignore))
-                bucket.append((classification,vector,ignore))
-            self.buckets.append(bucket)
-        self.rawData = list(self.data)
-        # get length of instance vector
-        self.vlen = len(self.data[0][1])
-        print self.buckets()
-        print "h"
-        # now normalize the data
-        for i in range(self.vlen):
-            self.normalizeColumn(i)
-
     def __init__(self, filename):
-
         self.medianAndDeviation = []
-        
         # reading the data in from the file
         f = open(filename)
         lines = f.readlines()
@@ -112,10 +76,6 @@ class Classifier:
         # now normalize the data
         for i in range(self.vlen):
             self.normalizeColumn(i)
-        
-
-        
-    
     ##################################################
     ###
     ###  CODE TO COMPUTE THE MODIFIED STANDARD SCORE
@@ -134,7 +94,7 @@ class Classifier:
             v1 = blist[int(length / 2)]
             v2 =blist[(int(length / 2) - 1)]
             return (v1 + v2) / 2.0
-        
+
 
     def getAbsoluteStandardDeviation(self, alist, median):
         """given alist and median return absolute standard deviation"""
@@ -165,7 +125,7 @@ class Classifier:
             vector[i] = (vector[i] - median) / asd
         return vector
 
-    
+
     ###
     ### END NORMALIZATION
     ##################################################
@@ -181,11 +141,11 @@ class Classifier:
         """return nearest neighbor to itemVector"""
         return min([ (self.manhattan(itemVector, item[1]), item)
                      for item in self.data])
-    
+
     def classify(self, itemVector):
         """Return class we think item Vector is in"""
         return(self.nearestNeighbor(self.normalizeVector(itemVector))[1][0])
- 
+
 
 def unitTest():
     classifier = Classifier('athletesTrainingSet.txt')
@@ -246,7 +206,7 @@ def test(training_filename, test_filename):
             prefix = '+'
         #print("%s  %12s  %s" % (prefix, theClass, line))
     #print("%4.2f%% correct" % (numCorrect * 100/ len(lines)))
-        
+
 
 ##
 ##  Here are examples of how the classifier is used on different data sets
@@ -254,4 +214,3 @@ def test(training_filename, test_filename):
 #test('athletesTrainingSet.txt', 'athletesTestSet.txt')
 #  test("irisTrainingSet.data", "irisTestSet.data")
 test("mpgTrainingSet.txt", "mpgTestSet.txt")
-    
