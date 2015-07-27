@@ -187,3 +187,4 @@ prefixPath = "/Users/mohamedkane/Desktop/selfDev/DataMining/ch7/review_polarity_
 theDir = prefixPath + "/txt_sentoken/"
 stoplistfile = prefixPath + "stopwords25.txt"
 tenfold(theDir, stoplistfile)
+
