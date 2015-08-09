@@ -84,21 +84,23 @@ class hClusterer:
             neighList = [currentNeigh,dis,(i,j)]
             tupleForQueue= (dis,i,[currentCluster,neighList],neighbors[i])
             self.queue.append(tupleForQueue)    
-   ''' def merge(dic1,dic2):
+       def merge(dic1,dic2):
         dic3 = {}
         assert len(dic1)>0
         assert len(dic2)>0
-        i = dic1.values()[0][0]
-        j = dic2.values()[0][0]
         for key in dic1.keys():
-            if key!=j:
+            if key in dic2:
                 op1 = dic1[key][1]
                 op2 = dic2[key][1]
+                print dic1[key][0]
+                print dic2[key][0]
+
+
                 if op1<op2:
-                    dic3[key]=((i,key),op1)
+                    dic3[key]=(dic1[key][0],op1)
                 else:
-                    dic3[key]=((j,key),op2)
-        return dic3 '''
+                    dic3[key]=(dic2[key][0],op2)
+        return dic3 
 
 
 
@@ -111,12 +113,35 @@ class hClusterer:
 
     def cluster(self):
         # TODO
-        return "TO DO"
+        currentIndex = len(self.queue)
         while len(self.queue)>1:
+            currentIndex+=1
             clus1 = self.queue.get()
             clus2 = self.queue.get()
             print clus1
             print clus2
+            dist1 = clus1[0]
+            dist2 = clus2[0]
+            ney1= clus1[1]
+            ney2= clus2[1]
+            if dist1<dist2:
+                newDist=dist1
+                closestInfo=clus1[2][1]
+            else: 
+                newDist=dist2
+                closestInfo=clus2[2][1]
+            list1=clus1[2]
+            list2=clus2[2]
+            clusName1=list1[0]
+            clusName2=list2[0]
+            newClus=clusName2+clusName1
+            newDic=self.merge(clus1[2][2],clus2[2][2])
+            self.queue.append(newDist,currentIndex,[newClus,closestInfo,newDic])
+        return self.queue.get()
+
+
+
+
 
 
                          
