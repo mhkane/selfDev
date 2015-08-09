@@ -66,36 +66,39 @@ class hClusterer:
         ###     3. place the element on a priority queue, called simply queue,
         ###        based on the distance to the nearest neighbor (and a counter
         ###        used to break ties.
+        neighbors={}
+        closest = {}
+        closestDistance = {}
         for i in range(len(self.data[0])):
-            neighbor[i]={}
+            neighbors[i]={}
             dis = float('inf')
             closeneigh=i
             for j in range(len(self.data[0])):
                 if i!=j:
-                    neighbor[i][j]=((i,j),self.distance(i,j))
-                    if neighbor[i][j][1]<dis:
-                        dis=neighbor[i][j][1]
+                    neighbors[i][j]=((i,j),self.distance(i,j))
+                    if neighbors[i][j][1]<dis:
+                        dis=neighbors[i][j][1]
                         closeneigh=j
             currentCluster = [self.data[0][i]]
             currentNeigh = self.data[0][j]
             neighList = [currentNeigh,dis,(i,j)]
-            tupleForQueue= (dis,i,[currentCluster,neighList],neighbor[i])
+            tupleForQueue= (dis,i,[currentCluster,neighList],neighbors[i])
             self.queue.append(tupleForQueue)    
-    def merge(dic1,dic2):
+   ''' def merge(dic1,dic2):
         dic3 = {}
         assert len(dic1)>0
         assert len(dic2)>0
         i = dic1.values()[0][0]
         j = dic2.values()[0][0]
-        for keys in dic1.keys():
-            if keys!=j:
-                op1 = dic1[keys][1]
-                op2 = dic2[keys][1]
+        for key in dic1.keys():
+            if key!=j:
+                op1 = dic1[key][1]
+                op2 = dic2[key][1]
                 if op1<op2:
-                    dic3[keys]=((i,keys),op1)
+                    dic3[key]=((i,key),op1)
                 else:
-                    dic3[keys]=((j,keys),op2)
-        return dic3
+                    dic3[key]=((j,key),op2)
+        return dic3 '''
 
 
 
