@@ -2,11 +2,27 @@
 <html>
     <head>
     	<script src="https://fb.me/react-0.13.3.min.js"></script>
-        <title>My First React File</title>
+    	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+        <title>React Components</title>
     </head>
     <body>
     <div id="react-container"></div>
     <script type="text/jsx">
+    	var MyComponent = React.createClass({
+    		render: function() {
+    			return <div>
+                       <h1>{this.props.text}</h1>
+                       <p>{this.props.children}</p>
+                       </div>;
+    		}
+    	});
+    	React.render(
+            <div>
+            <MyComponent text= "Hello World">Hello</MyComponent>
+            <MyComponent text= "How are you ?">Hola</MyComponent>
+            <MyComponent text= "Ou est passe le couper-decaler">Allo</MyComponent>
+            </div>
+            , document.getElementById('react-container'));
     </script>
     </body>
 </html>

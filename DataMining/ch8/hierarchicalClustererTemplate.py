@@ -83,8 +83,9 @@ class hClusterer:
             currentNeigh = self.data[0][j]
             neighList = [currentNeigh,dis,(i,j)]
             tupleForQueue= (dis,i,[currentCluster,neighList],neighbors[i])
-            self.queue.append(tupleForQueue)    
-       def merge(dic1,dic2):
+            self.queue.append(tupleForQueue)   
+
+    def merge(dic1,dic2):
         dic3 = {}
         assert len(dic1)>0
         assert len(dic2)>0
@@ -94,8 +95,6 @@ class hClusterer:
                 op2 = dic2[key][1]
                 print dic1[key][0]
                 print dic2[key][0]
-
-
                 if op1<op2:
                     dic3[key]=(dic1[key][0],op1)
                 else:
@@ -139,14 +138,7 @@ class hClusterer:
             self.queue.append(newDist,currentIndex,[newClus,closestInfo,newDic])
         return self.queue.get()
 
-
-
-
-
-
                          
-
-
 def printDendrogram(T, sep=3):
     """Print dendrogram of a binary tree.  Each tree node is represented by a length-2 tuple.
     printDendrogram is written and provided by David Eppstein 2002. Accessed on 14 April 2014:
