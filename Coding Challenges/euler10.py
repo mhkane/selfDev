@@ -13,4 +13,4 @@ def e10(x=2000000):
 		if isprime(i):
 			somme+=i
 	return somme
-print e10()
+print e10(120)
